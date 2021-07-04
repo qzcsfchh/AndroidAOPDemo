@@ -1,2 +1,4 @@
 rootProject.name = "AndroidAOPDemo"
 include ':app'
+include ':aspectj-plugin'
+include ':aspectj-core'

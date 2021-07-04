@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'org.aspectj:aspectjtools:1.9.2'
+    implementation 'org.aspectj:aspectjweaver:1.9.2'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+uploadArchives{
+    repositories.mavenDeployer{
+        repository(url: uri('../repo'))
+        pom.groupId = 'me.android.plugin'
+        pom.artifactId = 'aspectj'
+        pom.version = '1.0.0'
+        println "classpath \'${pom.groupId}:${pom.artifactId}:${pom.version}\'"
+    }
+}
+
+task publish(){
+    group='andfun'
+    description='publish your outcome artifacts'
+    doLast {
+        def cmd = './gradlew -p plugin clean build uploadArchives --info'
+        def result = cmd.execute().text.trim()
+        println result
+    }
+}
+
+//注意⚠️:   插件修改后运行前需要重新发布: ./gradlew -p plugin clean build uploadArchives --info
