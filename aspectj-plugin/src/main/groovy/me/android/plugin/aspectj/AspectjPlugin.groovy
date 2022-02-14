@@ -6,6 +6,9 @@ import org.aspectj.tools.ajc.Main
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * https://www.jianshu.com/p/2e8409bc8c3b
+ */
 class AspectjPlugin implements Plugin<Project>{
     @Override
     void apply(Project project) {
